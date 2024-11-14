@@ -47,7 +47,7 @@ public class App {
         animationPanel.setLayout(null);
         animationPanel.setSize(mainFrame.getSize());
 
-        Timer timer = new Timer(3000, new ActionListener() {
+        Timer timer = new Timer(5000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainFrame.remove(animationPanel);

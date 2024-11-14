@@ -6,7 +6,7 @@ import java.awt.*;
 public class MainGamePanel extends JPanel {
 
     public MainGamePanel() {
-        setBackground(Color.WHITE);
+       // setBackground(Color.WHITE);
     }
 
     @Override
@@ -14,8 +14,6 @@ public class MainGamePanel extends JPanel {
         super.paintComponent(g);
 
         // Display placeholder text for the main game screen
-        g.setColor(Color.BLACK);
-        g.setFont(new Font("Arial", Font.BOLD, 32));
-        g.drawString("Main Game Screen", getWidth() / 2 - 100, getHeight() / 2);
+      
     }
 }
