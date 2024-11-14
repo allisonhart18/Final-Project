@@ -1,47 +1,75 @@
 package com.finalbakery;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class App extends JFrame {
-    public static final int MAIN_GAME_SCREEN = 1;
-
-    private MidiPlayer midiPlayer;
-    private Screen startScreen;
-    private Screen mainGameScreen;
+public class App {
+    public static final String MAIN_GAME_SCREEN = "MainGameScreen";
+    private JFrame mainFrame;
+    private SceneController sceneController;
+    private BedroomScene bedroomScene;
+    private StartScreen startScreen;
+    private boolean isAnimationComplete = false;
 
     public App() {
-        setTitle("Game");
-        setSize(3240, 2160);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-
-        midiPlayer = new MidiPlayer();
-        midiPlayer.loadMidiFiles("data/sound1.mid", "data/sound2.mid");
-
+        mainFrame = new JFrame("Final Bakery Game");
+        sceneController = new SceneController(this);
+        bedroomScene = new BedroomScene(sceneController);
         startScreen = new StartScreen(this);
-        mainGameScreen = new MainGameScreen();
-
-        setContentPane(startScreen.getPanel());
     }
 
-    public void playMidiFiles() {
-        midiPlayer.playAll();
+    public void setup() {
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setSize(3240, 2160);
+        mainFrame.setLocationRelativeTo(null);
+
+        JPanel startPanel = startScreen.getPanel();
+        mainFrame.add(startPanel, BorderLayout.CENTER);
+
+        mainFrame.setVisible(true);
     }
 
-    public void changeScreen(int screen) {
-        if (screen == MAIN_GAME_SCREEN) {
-            setContentPane(mainGameScreen.getPanel());
-        } else {
-            setContentPane(startScreen.getPanel());
-        }
-        revalidate();
-        repaint();
+    public void startGame() {
+        startScreen.getPanel().setVisible(false);
+        showAnimation();
+    }
+
+    private void showAnimation() {
+        JPanel animationPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(new ImageIcon("data/introAnimation.gif").getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        animationPanel.setLayout(null);
+        animationPanel.setSize(mainFrame.getSize());
+
+        Timer timer = new Timer(3000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.remove(animationPanel);
+                mainFrame.add(bedroomScene.getPanel(), BorderLayout.CENTER);
+                mainFrame.revalidate();
+                mainFrame.repaint();
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
+
+        mainFrame.add(animationPanel);
+        mainFrame.revalidate();
+        mainFrame.repaint();
+    }
+
+    public JFrame getMainFrame() {
+        return mainFrame;
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            App app = new App();
-            app.setVisible(true);
-        });
+        App app = new App();
+        app.setup();
     }
 }

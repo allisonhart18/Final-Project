@@ -13,7 +13,7 @@ public class StartPanel extends JPanel {
     public StartPanel(App app) {
         this.app = app;
 
-        // Load the start screen image
+        // Load the start screen image (ensure the path is correct)
         startScreenImage = new ImageIcon("data/startScreenImage.png").getImage();
 
         // Set up the start button
@@ -25,8 +25,7 @@ public class StartPanel extends JPanel {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                app.playMidiFiles();  // Play the MIDI files
-                app.changeScreen(App.MAIN_GAME_SCREEN);  // Change to main game screen
+                app.startGame();  // Trigger the start of the game (animation)
             }
         });
 
@@ -37,6 +36,11 @@ public class StartPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        // Draw the background image for the start screen
         g.drawImage(startScreenImage, 0, 0, getWidth(), getHeight(), this);
+    }
+
+    public JPanel getPanel() {
+        return this;
     }
 }

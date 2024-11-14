@@ -20,6 +20,9 @@ public class MainGameScreen implements Screen {
                 g.drawString("Welcome to the Main Game Screen!", 50, 50);
             }
         };
+        
+        // Set layout to BorderLayout for positioning components like inventoryBox
+        panel.setLayout(new BorderLayout());
     }
 
     @Override
