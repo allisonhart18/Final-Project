@@ -11,7 +11,9 @@ public class App {
     private SceneController sceneController;
     private BedroomScene bedroomScene;
     private StartScreen startScreen;
-    private boolean isAnimationComplete = false;
+   private boolean isAnimationComplete = false;
+
+   
 
     public App() {
         mainFrame = new JFrame("Final Bakery Game");
@@ -35,7 +37,6 @@ public class App {
         startScreen.getPanel().setVisible(false);
         showAnimation();
     }
-
     private void showAnimation() {
         JPanel animationPanel = new JPanel() {
             @Override
@@ -46,11 +47,11 @@ public class App {
         };
         animationPanel.setLayout(null);
         animationPanel.setSize(mainFrame.getSize());
-
+    
         Timer timer = new Timer(5000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFrame.remove(animationPanel);
+                mainFrame.getContentPane().removeAll(); // Clear previous components
                 mainFrame.add(bedroomScene.getPanel(), BorderLayout.CENTER);
                 mainFrame.revalidate();
                 mainFrame.repaint();
@@ -58,11 +59,12 @@ public class App {
         });
         timer.setRepeats(false);
         timer.start();
-
-        mainFrame.add(animationPanel);
+    
+        mainFrame.getContentPane().add(animationPanel);
         mainFrame.revalidate();
         mainFrame.repaint();
     }
+    
 
     public JFrame getMainFrame() {
         return mainFrame;

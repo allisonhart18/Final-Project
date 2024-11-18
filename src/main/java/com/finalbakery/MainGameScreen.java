@@ -1,30 +1,16 @@
 package com.finalbakery;
-/*  
+
 import javax.swing.*;
-import java.awt.*;
 
-public class MainGameScreen implements Screen {
-   private JPanel panel;
+public class MainGameScreen {
+    private JPanel mainPanel;
 
-    public MainGameScreen() {
-        setup();
+    public MainGameScreen(App app) {
+        mainPanel = new JPanel();
+        mainPanel.add(new JLabel("Welcome to the Main Game!"));
     }
 
-    @Override
-    public void setup() {
-        panel = new JPanel() {
-          
-    }
-
-    @Override
     public JPanel getPanel() {
-        return panel;
+        return mainPanel;
     }
 }
-
-    @Override
-    public JPanel getPanel() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPanel'");
-    } 
-} */
