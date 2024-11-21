@@ -1,3 +1,11 @@
+/*
+ * Allison Hart
+ * 11/19
+ * 
+ * start screen of the application, displaying a background image and a clickable start button to transition to the game
+ * 
+ */
+
 package com.finalbakery;
 
 import javax.swing.*;

@@ -1,3 +1,10 @@
+/*
+ * Allison Hart
+ * 11/19
+ * 
+ *
+ *  initializes and returns the start panel to be used in the main application
+ */
 package com.finalbakery;
 
 import javax.swing.*;

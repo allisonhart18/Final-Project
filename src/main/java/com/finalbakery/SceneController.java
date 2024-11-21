@@ -1,3 +1,10 @@
+/*
+ * Allison Hart
+ * 11/19
+ * 
+ * This class controls the switching between animations and backgrounds
+ * 
+ */
 package com.finalbakery;
 
 import javax.swing.*;
@@ -23,5 +30,11 @@ public class SceneController {
     public void switchToMainGameScreen() {
         MainGameScreen mainGameScreen = new MainGameScreen(app);
         switchScene(mainGameScreen.getPanel());
+    }
+
+    // Method to switch to BakeryScene2
+    public void switchToBakeryScene2() {
+        BakeryScene2 bakeryScene2 = new BakeryScene2(this);
+        switchScene(bakeryScene2.getPanel());
     }
 }
