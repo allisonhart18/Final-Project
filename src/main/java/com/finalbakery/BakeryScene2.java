@@ -77,7 +77,7 @@ public class BakeryScene2 extends AbstractScene {
         animationPanel.setLayout(null);
         animationPanel.setSize(scenePanel.getSize());
 
-        Timer timer = new Timer(5000, new ActionListener() {
+        Timer timer = new Timer(3000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 isAnimationComplete = true;

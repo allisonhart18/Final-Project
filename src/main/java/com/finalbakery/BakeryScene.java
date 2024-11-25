@@ -90,6 +90,7 @@ public class BakeryScene extends AbstractScene {
 
         // Debugging: Print a message when boxes are added
         System.out.println("Three boxes added to the bakery scene.");
+        
     }
 
     private void showAnimation() {
@@ -102,6 +103,8 @@ public class BakeryScene extends AbstractScene {
         };
         animationPanel.setLayout(null);
         animationPanel.setSize(scenePanel.getSize());
+
+
 
         Timer timer = new Timer(5000, new ActionListener() {
             @Override
